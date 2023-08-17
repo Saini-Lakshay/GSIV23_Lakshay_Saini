@@ -11,7 +11,7 @@ const Routing = () => {
             <Route
               key={index}
               path={path.path}
-              element={path.component}
+              element={<path.component />}
             ></Route>
           ) : (
             <span key={index}>

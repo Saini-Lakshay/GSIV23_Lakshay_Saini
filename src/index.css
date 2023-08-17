@@ -2,3 +2,16 @@
   margin: 0;
   padding: 0;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.multiline-ellipsis {
+  display: inline-block;
+  width: 100%;
+  line-height: 1.5rem;
+  height: 3rem;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
