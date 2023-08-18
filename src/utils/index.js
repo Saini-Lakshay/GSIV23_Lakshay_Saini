@@ -40,3 +40,15 @@ export const getYearFromdate = (date) => {
   }
   return "";
 };
+
+export const applyDebounce = (fn, delay) => {
+  let timer;
+  return function () {
+    let context = this;
+    let args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn.apply(context, args);
+    }, delay);
+  };
+};

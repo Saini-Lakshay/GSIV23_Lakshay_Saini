@@ -40,9 +40,9 @@ export const getOneMovieCreditsService = async (data) => {
   };
 };
 
-export const getAllSearchedMovies = async (data) => {
-  let url = `https://api.themoviedb.org/3/movie/${data.id}/credits?api_key=2bf70ba6e5e262fad875b833fe8b5d26`; // remove apiKey from here and move to env file
-  // let url = mapQueryParams(prevUrl, data);
+export const getSearchedMoviesService = async (data) => {
+  let prevUrl = `https://api.themoviedb.org/3/search/movie?api_key=2bf70ba6e5e262fad875b833fe8b5d26`; // remove apiKey from here and move to env file
+  let url = mapQueryParams(prevUrl, data);
   const resp = await fetch(url);
   if (resp) {
     const jsonResp = await resp.json();

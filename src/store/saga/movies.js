@@ -3,8 +3,9 @@ import {
   getAllMoviesService,
   getOneMovieCreditsService,
   getOneMovieService,
+  getSearchedMoviesService,
 } from "../../services/movies";
-import { getAllMovies, getOneMovie } from "../actions/movies";
+import { getAllMovies, getOneMovie, getSearchMovies } from "../actions/movies";
 import { toast } from "react-toastify";
 import ActionTypes from "../actions/types";
 
@@ -49,8 +50,27 @@ export function* getOneMovieSaga(action) {
   }
 }
 
+export function* getSearchMoviesSaga(action) {
+  try {
+    const res = yield call(getSearchedMoviesService, action.payload);
+    if (res.isSuccess) {
+      yield put(getSearchMovies.SUCCESS(res.data));
+    } else {
+      yield put(getSearchMovies.FAILURE(res));
+      toast.error("Error getting searched movies!");
+    }
+  } catch (err) {
+    yield put(
+      getSearchMovies.FAILURE({
+        isSuccess: false,
+      })
+    );
+  }
+}
+
 const MoviesSaga = () => [
   takeLatest(ActionTypes.Movies.GET_ALL_MOVIES.REQUEST, getAllMoviesSaga),
   takeLatest(ActionTypes.Movies.GET_ONE_MOVIE.REQUEST, getOneMovieSaga),
+  takeLatest(ActionTypes.Movies.GET_SEARCH_MOVIES.REQUEST, getSearchMoviesSaga),
 ];
 export default MoviesSaga();

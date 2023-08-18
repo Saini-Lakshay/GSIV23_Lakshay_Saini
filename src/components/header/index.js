@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Search from "@material-ui/icons/Search";
 import Home from "@material-ui/icons/Home";
 
 const Header = (props) => {
-  const { title, showSearchbar, handleSearch } = props;
+  const { title, showSearchbar, handleSearch, searchValue } = props;
+  const [value, setValue] = useState(searchValue || "");
+
+  useEffect(() => {
+    if (value !== searchValue && handleSearch) {
+      handleSearch(value);
+    }
+  }, [value]);
+
   return (
     <header className="py-5 px-5 flex justify-between items-center border-b-[3px] border-disabled shadow-lg">
       <section className=" w-[40%] text-left">
@@ -16,7 +24,11 @@ const Header = (props) => {
             <input
               className="bg-transparent text-lightGrey outline-none px-2 py-2 font-bold w-full"
               type="text"
+              value={value}
               placeholder="Search"
+              onChange={(e) => {
+                setValue(e.target.value);
+              }}
             />
           </div>
         )}
