@@ -4,9 +4,12 @@ import MovieCard from "../../components/movieCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMovies } from "../../store/actions/movies";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const MoviesList = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { allMovies, loader, page, totalPages, totalResult } = useSelector(
     (state) => state.movies
@@ -15,6 +18,14 @@ const MoviesList = () => {
   useEffect(() => {
     dispatch(getAllMovies.REQUEST({ page: 1 }));
   }, []);
+
+  const handleCardClick = (movieId) => {
+    if (movieId) {
+      navigate(`/movie/${movieId}`);
+    } else {
+      toast.error("No id found!");
+    }
+  };
 
   return (
     <div>
@@ -33,10 +44,17 @@ const MoviesList = () => {
           </p>
         }
       >
-        <Header />
-        <div className="py-5 grid 2xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-6 px-5">
+        <Header
+          showSearchbar={true}
+          handleSearch={(val) => {
+            console.log(val);
+          }}
+        />
+        <div className="py-5 grid 2xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-6 px-5 h-full">
           {allMovies.map((movie, index) => {
-            return <MovieCard key={index} {...movie} />;
+            return (
+              <MovieCard key={index} {...movie} handleClick={handleCardClick} />
+            );
           })}
         </div>
       </InfiniteScroll>

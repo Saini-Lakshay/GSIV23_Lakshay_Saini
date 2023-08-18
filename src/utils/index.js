@@ -33,3 +33,10 @@ export const mapQueryParams = (prevUrl, paramData) => {
   }
   return url;
 };
+
+export const getYearFromdate = (date) => {
+  if (date) {
+    return new Date(date).getFullYear();
+  }
+  return "";
+};
