@@ -1,6 +1,6 @@
 import { get } from "lodash";
 import React from "react";
-import { imageURL } from "../../constants";
+import { dummyImage, imageURL } from "../../constants";
 
 const MovieCard = (props) => {
   return (
@@ -12,8 +12,12 @@ const MovieCard = (props) => {
     >
       <div className="h-[300px]">
         <img
-          src={`${imageURL}${get(props, "poster_path", "")}`}
-          alt="movieImg"
+          src={
+            get(props, "poster_path", "")
+              ? `${imageURL}${get(props, "poster_path", "")}`
+              : dummyImage
+          }
+          alt={`${get(props, "title", "")} poster image not found`}
           className="h-full w-full object-fill"
         />
       </div>

@@ -40,7 +40,7 @@ const MoviesList = () => {
         loader={<h4 className="py-10 font-bold">Loading...</h4>}
         endMessage={
           <p style={{ textAlign: "center" }}>
-            <b>Yay! You have seen it all</b>
+            {!loader && <b>Yay! You have seen it all</b>}
           </p>
         }
       >

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getOneMovie } from "../../store/actions/movies";
 import Header from "../../components/header";
-import { imageURL } from "../../constants";
+import { dummyImage, imageURL } from "../../constants";
 import { get } from "lodash";
 import { getYearFromdate } from "../../utils";
 
@@ -29,8 +29,16 @@ const MovieDetail = () => {
             <div className="flex flex-col md:flex-row gap-4">
               <section className="w-[50%] md:w-[30%] h-full mx-[auto]">
                 <img
-                  src={`${imageURL}${get(selectedMovie, "poster_path", "")}`}
-                  alt="movieImg"
+                  src={
+                    get(selectedMovie, "poster_path", "")
+                      ? `${imageURL}${get(selectedMovie, "poster_path", "")}`
+                      : dummyImage
+                  }
+                  alt={`${get(
+                    selectedMovie,
+                    "title",
+                    ""
+                  )} poster image not found`}
                   className="h-full w-full object-fill"
                 />
               </section>
