@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Search from "@material-ui/icons/Search";
 import Home from "@material-ui/icons/Home";
+import { useNavigate } from "react-router-dom";
 
 const Header = (props) => {
   const { title, showSearchbar, handleSearch, searchValue } = props;
+  const navigate = useNavigate();
   const [value, setValue] = useState(searchValue || "");
 
   useEffect(() => {
@@ -33,7 +35,12 @@ const Header = (props) => {
           </div>
         )}
       </section>
-      <Home className="text-black font-medium cursor-pointer" />
+      <Home
+        className="text-black font-medium cursor-pointer"
+        onClick={() => {
+          navigate("/");
+        }}
+      />
     </header>
   );
 };
