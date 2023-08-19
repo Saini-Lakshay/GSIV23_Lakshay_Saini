@@ -1,6 +1,6 @@
 # Movies App
 
-This project is deployed [here](https://github.com/facebook/create-react-app).
+This project is deployed [here](https://precious-piroshki-db8a9f.netlify.app/).
 
 ## Run the App
 
