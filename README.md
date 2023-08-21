@@ -20,13 +20,3 @@ You may also see any lint errors in the console.
 1. React.js
 2. TailwindCSS (styling)
 3. Redux (state management)
-
-
-## Elements that i have done well
-1. Added proper components based approach for creating app.
-2. Routing for public and private routes.
-3. Redux setup (used generic functions to create action types and actions).
-4. Used debouncing technique(generic function) to search movies.
-
-
-If had some more hours, will add caching for required functions and improve the styling for components.
