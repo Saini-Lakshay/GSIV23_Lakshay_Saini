@@ -1,6 +1,6 @@
 # Movies App
 
-This project is deployed [here](https://precious-piroshki-db8a9f.netlify.app/).
+This project is deployed [here](https://films-finder.netlify.app/).
 
 ## Run the App
 
